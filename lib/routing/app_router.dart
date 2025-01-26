@@ -1,10 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import '../data/prefs/current_user.dart';
 import '../ui/home/home.dart';
 import '../ui/home/mobile_bottom.dart';
 import '../ui/login/login_page.dart';
-import '../utils/log.dart';
 
 part 'app_router.gr.dart';
 

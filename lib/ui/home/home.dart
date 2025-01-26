@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:ecommerce/const/color.dart';
+import 'package:ecommerce/const/string.dart';
 import 'package:ecommerce/data/model/product_model.dart';
 import 'package:ecommerce/ui/home/bloc/home_bloc.dart';
 import 'package:ecommerce/ui/home/components/category_widget.dart';
@@ -7,6 +8,7 @@ import 'package:ecommerce/utils/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'components/banner_widget.dart';
 import 'components/product_item.dart';
@@ -55,32 +57,51 @@ class _HomePageState extends State<HomePage> {
               headerSliverBuilder:
                   (BuildContext context, bool innerBoxIsScrolled) {
                 return [
-                    SliverAppBar(
-                      backgroundColor: kPrimaryLight,
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Location",
-                              style: textTheme.bodySmall
-                                  ?.apply(color: Colors.white)),
-                          SizedBox(height: 5),
-                          Row(
-                            children: [
-                              Icon(Icons.share_location_sharp,
-                                  color: Colors.white),
-                              SizedBox(width: 5),
-                              Text("New york, USA",
-                                  style: textTheme.bodyMedium
-                                      ?.apply(color: Colors.white)),
-                            ],
+                  SliverAppBar(
+                    backgroundColor: kPrimaryLight,
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Location",
+                                style: textTheme.bodySmall
+                                    ?.apply(color: Colors.white)),
+                            SizedBox(height: 5),
+                            Row(
+                              children: [
+                                Icon(Icons.location_on_rounded,
+                                    color: Colors.white),
+                                SizedBox(width: 5),
+                                Text("New york, USA",
+                                    style: textTheme.bodyMedium
+                                        ?.apply(color: Colors.white)),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.2),
+                            borderRadius: borderRadiusAll_5
                           ),
-                        ],
-                      ),
-                      elevation: 10.0,
-                      automaticallyImplyLeading: false,
-                      floating: true,
-                      snap: false,
-                    )
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Icon(Icons.notifications_sharp,color: Colors.white),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    elevation: 10.0,
+                    automaticallyImplyLeading: false,
+                    floating: true,
+                    snap: false,
+                  )
                 ];
               },
               body: Stack(
@@ -120,12 +141,28 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "Top Selling",
-                                            style: textTheme.titleMedium?.merge(
-                                                TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Top Selling",
+                                                style: textTheme.titleMedium
+                                                    ?.merge(TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              ),
+                                              Text(
+                                                "See all",
+                                                style: textTheme.titleSmall
+                                                    ?.merge(
+                                                  TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.red,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
                                           ),
                                           SizedBox(height: 10),
                                           SizedBox(

@@ -14,7 +14,6 @@ class HomeProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.sizeOf(context).width;
     double kContainerWidth = 200;
     var theme = Theme.of(context);
     var textTheme = theme.textTheme;
@@ -38,7 +37,13 @@ class HomeProductItem extends StatelessWidget {
             Container(
               width: kContainerWidth,
               height: 150,
+              decoration: BoxDecoration(
               color: kContainerColor,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(8),
+                  topLeft: Radius.circular(8),
+                )
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: cacheImage(product.image,
@@ -58,20 +63,29 @@ class HomeProductItem extends StatelessWidget {
                         product.title ?? '',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                            style: textTheme.bodyMedium?.apply(fontWeightDelta: 12),
+                        style: textTheme.bodyMedium?.apply(fontWeightDelta: 12),
                       )),
                       SizedBox(width: 10),
                       Row(
                         children: [
-                          Icon(Icons.star_rounded, color: Colors.orange,size: 15),
-                          Text((product.rating?.rate ?? 0).toString(),style: textTheme.bodySmall,)
+                          Icon(Icons.star_rounded,
+                              color: Colors.orange, size: 15),
+                          Text(
+                            (product.rating?.rate ?? 0).toString(),
+                            style: textTheme.bodySmall,
+                          )
                         ],
                       )
                     ],
                   ),
-                  Text((product.category ?? '').capitalize(),style: textTheme.bodySmall,),
+                  Text(
+                    (product.category ?? '').capitalize(),
+                    style: textTheme.bodySmall,
+                  ),
                   SizedBox(height: 10),
-                  textWithCurrency(text: product.price.toString(), style: textTheme.bodyMedium?.apply(fontWeightDelta: 12))
+                  textWithCurrency(
+                      text: product.price.toString(),
+                      style: textTheme.bodyMedium?.apply(fontWeightDelta: 12))
                 ],
               ),
             ),

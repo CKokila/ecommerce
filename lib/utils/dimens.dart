@@ -27,3 +27,8 @@ const BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.cir
 
 
 const EdgeInsets mobilePadding = EdgeInsets.symmetric(horizontal: 16,vertical: 12);
+
+bool isMobile(BuildContext context) {
+  double width = MediaQuery.sizeOf(context).width;
+  return width < 601;
+}

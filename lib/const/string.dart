@@ -25,7 +25,6 @@ class SvgPictures {
   static const String credit = 'asset/svg/credit.svg';
   static const String netBank = 'asset/svg/netbank.svg';
   static const String wallet = 'asset/svg/wallet.svg';
-  static const String address = 'asset/svg/address.svg';
   static const String cart = 'asset/svg/cart.svg';
   static const String loginBanner = 'asset/svg/login_signup.svg';
   static const String loginRequired = 'asset/svg/login_required.svg';

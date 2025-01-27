@@ -39,16 +39,16 @@ class BottomNavItem extends StatelessWidget {
           ),
           label: "Home",
         ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: const EdgeInsets.only(bottom: 4.0),
-            child: SvgPicture.asset(
-              SvgPictures.category,
-              color: color(context, currentIndex, 1),
-            ),
-          ),
-          label: "Category",
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Padding(
+        //     padding: const EdgeInsets.only(bottom: 4.0),
+        //     child: SvgPicture.asset(
+        //       SvgPictures.category,
+        //       color: color(context, currentIndex, 1),
+        //     ),
+        //   ),
+        //   label: "Category",
+        // ),
         BottomNavigationBarItem(
           icon: Padding(
             padding: const EdgeInsets.only(bottom: 4.0),

@@ -1,7 +1,9 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:ecommerce/const/color.dart';
 import 'package:ecommerce/const/string.dart';
 import 'package:ecommerce/data/model/product_model.dart';
+import 'package:ecommerce/routing/app_router.dart';
 import 'package:ecommerce/ui/home/bloc/home_bloc.dart';
 import 'package:ecommerce/ui/home/components/category_widget.dart';
 import 'package:ecommerce/utils/dimens.dart';
@@ -85,13 +87,13 @@ class _HomePageState extends State<HomePage> {
                           width: 32,
                           height: 32,
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: borderRadiusAll_5
-                          ),
+                              color: Colors.white.withOpacity(0.2),
+                              borderRadius: borderRadiusAll_5),
                           child: Center(
                             child: Padding(
                               padding: const EdgeInsets.all(2.0),
-                              child: Icon(Icons.notifications_sharp,color: Colors.white),
+                              child: Icon(Icons.notifications_sharp,
+                                  color: Colors.white),
                             ),
                           ),
                         )
@@ -154,8 +156,8 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               Text(
                                                 "See all",
-                                                style: textTheme.titleSmall
-                                                    ?.merge(
+                                                style:
+                                                    textTheme.titleSmall?.merge(
                                                   TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.red,
@@ -173,8 +175,13 @@ class _HomePageState extends State<HomePage> {
                                               itemBuilder: (context, index) {
                                                 ProductModel product =
                                                     topProductList[index];
-                                                return HomeProductItem(
-                                                    product: product);
+                                                return InkWell(
+                                                  onTap: () {
+                                                    context.router.push(ProductDetailRoute(id: product.id.toString()));
+                                                  },
+                                                  child: HomeProductItem(
+                                                      product: product),
+                                                );
                                               },
                                             ),
                                           ),

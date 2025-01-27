@@ -50,11 +50,11 @@ class DioClient {
     }
   }
 
-  Future<ApiResponse> get(String url) async {
+  Future<ApiResponse> get(String url,{Map<String, dynamic>? queryParameters}) async {
     _dio.options.headers = _getHeaders();
     try {
       _log("--> GET $url");
-      Response rawResponse = await _dio.get(_baseUrl + url);
+      Response rawResponse = await _dio.get(_baseUrl + url,queryParameters: queryParameters);
       var response = rawResponse.data;
       _log(
           "<-- ${rawResponse.requestOptions.method} ${rawResponse.statusCode} ${rawResponse.requestOptions.path}");

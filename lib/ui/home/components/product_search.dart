@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import '../../../data/prefs/current_user.dart';
+import '../../../data/repo/product_repo.dart';
+import '../../../utils/log.dart';
 import '../../widget/cache_image.dart';
 import '../../widget/common.dart';
 import '../../widget/textfield.dart';
@@ -38,36 +40,36 @@ class _ProductSearchState extends State<ProductSearch> {
         }).toList(),
       );
 
-  // void _productSearch(String keyword) {
-  //   setState(() {
-  //     isLoading = true;
-  //   });
-  //   ProductRepo(context).searchProduct(keyword).then((value) {
-  //     setState(() {
-  //       isLoading = false;
-  //       searchProductList = value;
-  //       listener.value = searchProductList;
-  //       listener.notifyListeners();
-  //     });
-  //   }).catchError((e) {
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-  //   });
-  // }
+  void _productSearch(String keyword) {
+    setState(() {
+      isLoading = true;
+    });
+    ProductRepo().searchProduct(keyword).then((value) {
+      setState(() {
+        isLoading = false;
+        searchProductList = value;
+        listener.value = searchProductList;
+        listener.notifyListeners();
+      });
+    }).catchError((e) {
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
 
   _searchProduct(String keyword) {
-    // setState(() {
-    //   Log.d("Entered keyword $keyword length");
-    //   if (keyword.trim().isNotEmpty && keyword.trim().length > 2) {
-    //     _productSearch(keyword);
-    //   }
-    //   if (keyword.trim().isEmpty) {
-    //     Log.d("Empty value entered");
-    //     searchProductList = [];
-    //   }
-    //   Log.d("Product list ${searchProductList.length}");
-    // });
+    setState(() {
+      Log.d("Entered keyword $keyword length");
+      if (keyword.trim().isNotEmpty && keyword.trim().length > 1) {
+        _productSearch(keyword);
+      }
+      if (keyword.trim().isEmpty) {
+        Log.d("Empty value entered");
+        searchProductList = [];
+      }
+      Log.d("Product list ${searchProductList.length}");
+    });
   }
 
   @override
@@ -103,21 +105,25 @@ class _ProductSearchState extends State<ProductSearch> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          cacheImage(product.image,
-                              width: 40,
-                              height: 40,
-                              fit: BoxFit.cover,
-                              borderRadius: 20),
-                          const SizedBox(width: 10),
-                          Text(
-                            product.title ?? '',
-                            style: textTheme.titleSmall?.apply(
-                              color: Colors.black,
+                      Expanded(
+                        child: Row(
+                          children: [
+                            cacheImage(product.image,
+                                width: 40,
+                                height: 40,
+                                fit: BoxFit.cover,
+                                borderRadius: 20),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                product.title ?? '',
+                                style: textTheme.titleSmall?.apply(
+                                  color: Colors.black,
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       textWithCurrency(
                           text: (product.price?.toStringAsFixed(2) ?? '0'),
@@ -159,7 +165,7 @@ class _ProductSearchState extends State<ProductSearch> {
                   borderRadius: 12,
                   onFieldSubmitted: (v) {
                     searchFocus.requestFocus();
-                    context.router.pushNamed('search-result/$v');
+                    // context.router.pushNamed('search-result/$v');
                   },
                   onChanged: _searchProduct,
                   filled: false,

@@ -57,3 +57,88 @@ class MobileBottomRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [ProductDetail]
+class ProductDetailRoute extends PageRouteInfo<ProductDetailRouteArgs> {
+  ProductDetailRoute({
+    Key? key,
+    required String id,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ProductDetailRoute.name,
+         args: ProductDetailRouteArgs(key: key, id: id),
+         rawPathParams: {'id': id},
+         initialChildren: children,
+       );
+
+  static const String name = 'ProductDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<ProductDetailRouteArgs>(
+        orElse: () => ProductDetailRouteArgs(id: pathParams.getString('id')),
+      );
+      return ProductDetail(key: args.key, id: args.id);
+    },
+  );
+}
+
+class ProductDetailRouteArgs {
+  const ProductDetailRouteArgs({this.key, required this.id});
+
+  final Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'ProductDetailRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
+/// [ProductListing]
+class ProductListingRoute extends PageRouteInfo<ProductListingRouteArgs> {
+  ProductListingRoute({
+    Key? key,
+    required String category,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ProductListingRoute.name,
+         args: ProductListingRouteArgs(key: key, category: category),
+         rawPathParams: {'category': category},
+         initialChildren: children,
+       );
+
+  static const String name = 'ProductListingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<ProductListingRouteArgs>(
+        orElse:
+            () => ProductListingRouteArgs(
+              category: pathParams.getString('category'),
+            ),
+      );
+      return ProductListing(key: args.key, category: args.category);
+    },
+  );
+}
+
+class ProductListingRouteArgs {
+  const ProductListingRouteArgs({this.key, required this.category});
+
+  final Key? key;
+
+  final String category;
+
+  @override
+  String toString() {
+    return 'ProductListingRouteArgs{key: $key, category: $category}';
+  }
+}

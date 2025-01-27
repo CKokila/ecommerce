@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:ecommerce/routing/app_router.dart';
 import 'package:ecommerce/utils/local_data.dart';
 import 'package:flutter/material.dart';
 
@@ -33,29 +35,38 @@ class CategoryWidget extends StatelessWidget {
                 itemCount: categoriesList.length,
                 itemBuilder: (context, index) {
                   Category category = categoriesList[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                              color: kContainerColor,
-                              borderRadius: BorderRadius.circular(50)),
-                          child: Center(
-                            child: Image.asset(
-                              category.image,
-                              width: 40,
-                              height: 40,
-                              fit: BoxFit.contain,
-                              color: theme.primaryColor,
+                  return InkWell(
+                    onTap: () {
+                      context.router.pushNamed("/products/${category.name}");
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 80,
+                            height: 80,
+                            decoration: BoxDecoration(
+                                color: kContainerColor,
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Center(
+                              child: Image.asset(
+                                category.image,
+                                width: 40,
+                                height: 40,
+                                fit: BoxFit.contain,
+                                color: theme.primaryColor,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(category.name,style: textTheme.bodySmall?.apply(fontWeightDelta: 12),)
-                      ],
+                          SizedBox(height: 10),
+                          Text(
+                            category.name,
+                            style:
+                                textTheme.bodySmall?.apply(fontWeightDelta: 12),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },

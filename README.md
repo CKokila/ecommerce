@@ -1,6 +1,6 @@
 # 🛒 E-Commerce App
 
-A fully-functional **Flutter E-Commerce App** showcasing clean architecture, seamless navigation, and reactive state management using **BLoC**. The app integrates with a free online API and is designed with MVVM architecture to ensure scalability and maintainability.
+A **Flutter E-Commerce App** showcasing clean architecture, seamless navigation, and reactive state management using **BLoC**. The app integrates with a free online API and is designed with MVVM architecture to ensure scalability and maintainability.
 
 ---
 

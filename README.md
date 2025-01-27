@@ -1,16 +1,43 @@
-# ecommerce
+# 🛒 E-Commerce App
 
-Ecommerce Application
+A fully-functional **Flutter E-Commerce App** showcasing clean architecture, seamless navigation, and reactive state management using **BLoC**. The app integrates with a free online API and is designed with MVVM architecture to ensure scalability and maintainability.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+### 1. Authentication
+- Simple login page for user authentication.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 2. Home Page
+- Rotating **promotional banners**.
+- **Category browsing** with 4 categories:
+    - **Electronics**
+    - **Jewelery**
+    - **Men's Clothing**
+    - **Women's Clothing**
+- Highlighted **top products** section.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 3. Product Listing
+- Displays products under the selected category.
+- **Sorting options** for better user experience (e.g., sort by price, name, rating).
+
+### 4. Product Detail
+- Detailed product information:
+    - Product name
+    - Image gallery
+    - Price and description
+    - Add to cart option
+
+### 5. Cart Page *(In Progress)*
+- Products added to the cart will be listed here.
+- Total cost calculation for user convenience.
+
+### 6. State Management
+- Reactive **BLoC pattern** for predictable and testable state management.
+
+### 7. Navigation
+- **AutoRoute** package for declarative routing and scalable navigation.
+
+### 8. API Integration
+- Data dynamically fetched from a **free online API**.

@@ -6,10 +6,8 @@ import 'package:ecommerce/ui/widget/common.dart';
 import 'package:ecommerce/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../const/color.dart';
-import '../../const/string.dart';
 import '../../utils/dimens.dart';
 
 @RoutePage(name: "ProductDetailRoute")
@@ -163,18 +161,19 @@ class _ProductDetailState extends State<ProductDetail> {
                           ],
                         ),
                         ElevatedButton(
-                            onPressed: () {},
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.shopping_cart,color: Colors.white),
-                                  SizedBox(width: 10),
-                                  Text("Add to cart"),
-                                ],
-                              ),
-                            ))
+                          onPressed: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 18.0, vertical: 8),
+                            child: Row(
+                              children: [
+                                Icon(Icons.shopping_cart, color: Colors.white),
+                                SizedBox(width: 10),
+                                Text("Add to cart"),
+                              ],
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),

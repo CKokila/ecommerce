@@ -21,6 +21,10 @@ A **Flutter E-Commerce App** showcasing clean architecture, seamless navigation,
 
 ## Screenshots
 
-Preview                    |   Home screen             |  Product Detail Screen    |  Cart Screen
+Preview                    |   Home Screen             |  Top Selling    |  Search Product
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/CKokila/ecommerce/blob/master/screenshots/preview.mp4?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/home.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/product_search.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/top_products.jpg?raw=true)
+![](https://github.com/CKokila/ecommerce/blob/master/screenshots/preview.mp4?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/home.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/top_products.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/product_search.jpg?raw=true)
+<br/>
+Product Listing            |   Product Detail Screen             |  Cart Screen    |  Login Screen
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](https://github.com/CKokila/ecommerce/blob/master/screenshots/product_listing.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/product_detail.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/cart.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/profile.jpg?raw=true)

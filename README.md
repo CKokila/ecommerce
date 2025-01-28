@@ -23,7 +23,7 @@ A **Flutter E-Commerce App** showcasing clean architecture, seamless navigation,
 
 Preview                    |   Home Screen             |  Top Selling    |  Search Product
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/CKokila/ecommerce/blob/master/screenshots/preview.mp4?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/home.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/top_products.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/product_search.jpg?raw=true)
+![](https://github.com/CKokila/ecommerce/blob/master/screenshots/preview.gif?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/home.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/top_products.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/product_search.jpg?raw=true)
 <br/>
 
 Product Listing                    |   Product Detail Screen             |  Cart Screen    |  Login Screen

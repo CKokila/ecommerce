@@ -7,52 +7,59 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 Widget cacheProfileImage(url, {BoxFit? fit, double? width, double? height}) {
-  if (url != null &&
-      url != '' &&
-      url.contains("http") &&
-      !url.contains(".None")) {
+  if (url != null && url != '' && url.contains("http") && !url.contains(".None")) {
     if (!kIsWeb) {
-      return CachedNetworkImage(
-          width: width,
-          height: height,
-          imageUrl: url,
-          fit: fit ?? BoxFit.cover,
-          placeholder: (ctx, url) => Shimmer.fromColors(
-                baseColor: Colors.grey[300]!,
-                highlightColor: Colors.grey[100]!,
-                child: const Card(),
-              ),
-          errorWidget: (ctx, url, error) => Image.asset(
-                Images.emptyProfile,
-                width: width,
-                height: height,
-                fit: BoxFit.contain,
-              ));
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: CachedNetworkImage(
+            width: width,
+            height: height,
+            imageUrl: url,
+            fit: fit ?? BoxFit.cover,
+            placeholder: (ctx, url) => Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: const Card(),
+                ),
+            errorWidget: (ctx, url, error) => Image.asset(
+                  Images.emptyProfile,
+                  width: width,
+                  height: height,
+                  fit: BoxFit.contain,
+                )),
+      );
     } else {
-      return Image.network(url,
-          width: width,
-          height: height,
-          fit: fit ?? BoxFit.cover,
-          loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent? loadingProgress) =>
-              Shimmer.fromColors(
-                baseColor: Colors.grey[300]!,
-                highlightColor: Colors.grey[100]!,
-                child: const Card(),
-              ),
-          errorBuilder: (ctx, url, error) => Image.asset(
-                Images.emptyProfile,
-                width: width,
-                height: height,
-                fit: BoxFit.contain,
-              ));
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Image.network(url,
+            width: width,
+            height: height,
+            fit: fit ?? BoxFit.cover,
+            loadingBuilder:
+                (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) =>
+                    Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: const Card(),
+                    ),
+            errorBuilder: (ctx, url, error) => Image.asset(
+                  Images.emptyProfile,
+                  width: width,
+                  height: height,
+                  fit: BoxFit.cover,
+                )),
+      );
     }
   } else {
-    return Image.asset(
-      Images.emptyProfile,
-      width: width,
-      height: height,
-      fit: BoxFit.contain,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(100),
+      child: Image.asset(
+        Images.emptyProfile,
+        width: width,
+        height: height,
+        fit: BoxFit.contain,
+      ),
     );
   }
 }
@@ -66,15 +73,11 @@ Widget cacheImage(url,
     Alignment? alignment,
     String? emptyImage}) {
   try {
-    if (url != null &&
-        url != '' &&
-        url.contains("http") &&
-        !url.contains(".None")) {
+    if (url != null && url != '' && url.contains("http") && !url.contains(".None")) {
       if (!kIsWeb) {
         return ClipRRect(
-          borderRadius: borderRadius != null
-              ? BorderRadius.circular(borderRadius)
-              : BorderRadius.zero,
+          borderRadius:
+              borderRadius != null ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: CachedNetworkImage(
             width: width,
@@ -92,19 +95,16 @@ Widget cacheImage(url,
                   ? Text(
                       text,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 14),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                     )
-                  : const Icon(Icons.broken_image_outlined,
-                      color: Colors.black12);
+                  : const Icon(Icons.broken_image_outlined, color: Colors.black12);
             },
           ),
         );
       } else {
         return ClipRRect(
-          borderRadius: borderRadius != null
-              ? BorderRadius.circular(borderRadius)
-              : BorderRadius.zero,
+          borderRadius:
+              borderRadius != null ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: Image.network(
             url,
@@ -118,24 +118,21 @@ Widget cacheImage(url,
                   ? Text(
                       text,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 14),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                     )
                   : SizedBox(
                       width: width,
                       height: height,
                       child: const Center(
-                          child: Icon(Icons.broken_image_outlined,
-                              color: Colors.black12)));
+                          child: Icon(Icons.broken_image_outlined, color: Colors.black12)));
             },
           ),
         );
       }
     } else {
       return ClipRRect(
-        borderRadius: borderRadius != null
-            ? BorderRadius.circular(borderRadius)
-            : BorderRadius.zero,
+        borderRadius:
+            borderRadius != null ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Image.asset(
           emptyImage ?? Images.notFound,
@@ -147,9 +144,7 @@ Widget cacheImage(url,
     }
   } catch (e) {
     return ClipRRect(
-      borderRadius: borderRadius != null
-          ? BorderRadius.circular(borderRadius)
-          : BorderRadius.zero,
+      borderRadius: borderRadius != null ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: Image.asset(
         emptyImage ?? Images.notFound,
@@ -161,8 +156,8 @@ Widget cacheImage(url,
   }
 }
 
-Alignment fractionAlign = FractionalOffset.fromOffsetAndRect(
-    const Offset(0, 10), const Rect.fromLTWH(10, 10, 10, 10));
+Alignment fractionAlign =
+    FractionalOffset.fromOffsetAndRect(const Offset(0, 10), const Rect.fromLTWH(10, 10, 10, 10));
 
 Future<Uint8List> getCanvasImage(String str) async {
   var builder = ParagraphBuilder(ParagraphStyle(fontStyle: FontStyle.normal));

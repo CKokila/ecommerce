@@ -7,6 +7,7 @@ import 'package:ecommerce/ui/widget/cache_image.dart';
 import 'package:ecommerce/ui/widget/common.dart';
 import 'package:ecommerce/utils/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../utils/dimens.dart';
@@ -46,6 +47,10 @@ class _CartPageState extends State<CartPage> {
           child: Scaffold(
             appBar: AppBar(
               title: Text("Cart"),
+              systemOverlayStyle: SystemUiOverlayStyle(
+                systemNavigationBarColor: Colors.white, // Navigation bar
+                statusBarColor: Colors.white, // Status bar
+              ),
               actions: [
                 InkWell(
                   onTap: () {
@@ -69,8 +74,7 @@ class _CartPageState extends State<CartPage> {
                   itemBuilder: (context, index) {
                     final product = cart.products![index];
                     return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -82,29 +86,24 @@ class _CartPageState extends State<CartPage> {
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                      color: kContainerColor,
-                                      borderRadius: borderRadiusAll_10),
+                                      color: kContainerColor, borderRadius: borderRadiusAll_10),
                                   padding: EdgeInsets.all(8),
                                   child: cacheImage(product.image!),
                                 ),
                                 SizedBox(width: 5),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(product.title ?? '',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
+                                          style: TextStyle(fontWeight: FontWeight.bold)),
                                       Text(
-                                        (product.category ?? 'Unknown')
-                                            .capitalize(),
+                                        (product.category ?? 'Unknown').capitalize(),
                                         style: TextStyle(color: kGrey),
                                       ),
                                       textWithCurrency(
                                         text: (product.totalPrice),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                        style: TextStyle(fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
@@ -117,14 +116,14 @@ class _CartPageState extends State<CartPage> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  cartBloc.add(UpdateCart(cartId: cart.id!, products: cart.products!));
+                                  cartBloc
+                                      .add(UpdateCart(cartId: cart.id!, products: cart.products!));
                                 },
                                 child: Container(
                                   width: 30,
                                   height: 30,
                                   decoration: BoxDecoration(
-                                      color: Color(0xffD6D6D6),
-                                      borderRadius: borderRadiusAll_5),
+                                      color: Color(0xffD6D6D6), borderRadius: borderRadiusAll_5),
                                   child: Icon(
                                     Icons.remove,
                                     color: Colors.white,
@@ -133,20 +132,19 @@ class _CartPageState extends State<CartPage> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 18.0),
-                                child: Text(product.quantity.toString()),
+                                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                                child: Text(product.quantity.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
                               ),
                               InkWell(
                                 onTap: () {
-                                  cartBloc.add(UpdateCart(cartId: cart.id!, products: cart.products!));
+                                  cartBloc
+                                      .add(UpdateCart(cartId: cart.id!, products: cart.products!));
                                 },
                                 child: Container(
                                   width: 30,
                                   height: 30,
                                   decoration: BoxDecoration(
-                                      color: kPrimaryLight,
-                                      borderRadius: borderRadiusAll_5),
+                                      color: kPrimaryLight, borderRadius: borderRadiusAll_5),
                                   child: Icon(
                                     Icons.add,
                                     color: Colors.white,

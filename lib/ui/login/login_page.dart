@@ -44,9 +44,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    username.text = "mor_2314";
-    password.text = "83r5^_";
-
+    // username.text = "mor_2314";
+    // password.text = "83r5^_";
     super.initState();
   }
 
@@ -77,32 +76,29 @@ class _LoginPageState extends State<LoginPage> {
               top: false,
               child: Row(
                 children: [
-                  if(
-                  !isMobile(context))
-                  loginBanner(context),
+                  if (!isMobile(context)) loginBanner(context),
                   Expanded(
                     child: Stack(
                       children: [
-
                         Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: width * 0.04,
-                              vertical: height * 0.04),
+                              horizontal: width * 0.04, vertical: height * 0.04),
                           child: SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 SizedBox(height: 30),
-                                SizedBox(
-                                    width: 250,
-                                    height: 250,
-                                    child: FittedBox(
-                                        child: SvgPicture.asset(
-                                          SvgPictures.loginBanner,
-                                          width: 100,
-                                          height: 100,
-                                        ))),
+                                if (isMobile(context))
+                                  SizedBox(
+                                      width: 250,
+                                      height: 250,
+                                      child: FittedBox(
+                                          child: SvgPicture.asset(
+                                        SvgPictures.loginBanner,
+                                        width: 100,
+                                        height: 100,
+                                      ))),
                                 Form(
                                   key: _formKey,
                                   child: Column(
@@ -116,15 +112,13 @@ class _LoginPageState extends State<LoginPage> {
                                             Text(
                                               "Welcome Back",
                                               style: textTheme.headlineLarge?.apply(
-                                                  fontWeightDelta: 12,
-                                                  color: kPrimaryLight),
+                                                  fontWeightDelta: 12, color: kPrimaryLight),
                                             ),
                                             const SizedBox(height: 10),
                                             Text(
                                               "Please login to your account",
-                                              style: textTheme.bodySmall?.apply(
-                                                  fontWeightDelta: 12,
-                                                  color: kGrey),
+                                              style: textTheme.bodySmall
+                                                  ?.apply(fontWeightDelta: 12, color: kGrey),
                                             ),
                                           ],
                                         ),
@@ -135,9 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                                         hintText: "Enter your phone number",
                                         length: 15,
                                         inputType: TextInputType.number,
-                                        inputFormat: [
-                                          FilteringTextInputFormatter.digitsOnly
-                                        ],
+                                        inputFormat: [FilteringTextInputFormatter.digitsOnly],
                                         validator: (v) {
                                           if (v?.isEmpty ?? false) {
                                             return "Phone number is required";
@@ -147,17 +139,14 @@ class _LoginPageState extends State<LoginPage> {
                                         },
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 18.0),
+                                        padding: const EdgeInsets.only(top: 18.0),
                                         child: PasswordField(
                                           textController: password,
                                           hintText: "Enter password",
                                           obscureText: _isObscure,
                                           onFieldSubmitted: (v) {
                                             if (state is! LoginLoading &&
-                                                _formKey.currentState
-                                                        ?.validate() ==
-                                                    true) {
+                                                _formKey.currentState?.validate() == true) {
                                               _loginBloc();
                                             }
                                           },
@@ -175,7 +164,8 @@ class _LoginPageState extends State<LoginPage> {
                                           },
                                           passwordFocus: passwordFocus,
                                         ),
-                                      )
+                                      ),
+                                      TextButton(onPressed: () {}, child: Text("Forgot password?")),
                                     ],
                                   ),
                                 ),
@@ -185,26 +175,32 @@ class _LoginPageState extends State<LoginPage> {
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    borderRadiusAll_10)),
+                                                borderRadius: borderRadiusAll_10)),
                                         onPressed: () async {
                                           if (state is! LoginLoading &&
-                                              _formKey.currentState?.validate() ==
-                                                  true) {
+                                              _formKey.currentState?.validate() == true) {
                                             _loginBloc();
                                           }
                                         },
                                         child: const Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 12.0),
+                                          padding: EdgeInsets.symmetric(vertical: 12.0),
                                           child: Text("Login"),
                                         ))),
+                                const SizedBox(height: 10),
+                                SizedBox(
+                                    width: width - 40,
+                                    child: TextButton(
+                                        style: TextButton.styleFrom(
+                                            backgroundColor: kPrimaryLight.withOpacity(0.1),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: borderRadiusAll_10)),
+                                        onPressed: () async {},
+                                        child: Text("Sign In"))),
                               ],
                             ),
                           ),
                         ),
-                        if (_isLoading || state is LoginLoading)
-                          circularProgress(true, context),
+                        if (_isLoading || state is LoginLoading) circularProgress(true, context),
                       ],
                     ),
                   ),

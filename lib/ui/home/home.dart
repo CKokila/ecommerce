@@ -61,6 +61,10 @@ class _HomePageState extends State<HomePage> {
                 return [
                   SliverAppBar(
                     backgroundColor: kPrimaryLight,
+                    systemOverlayStyle: SystemUiOverlayStyle(
+                      systemNavigationBarColor: Colors.white, // Navigation bar
+                      statusBarColor: kPrimaryLight, // Status bar
+                    ),
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

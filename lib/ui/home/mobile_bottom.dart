@@ -27,7 +27,7 @@ class _MobileBottomState extends State<MobileBottom> {
         HomeRoute(),
         // CategoryRoute(),
         CartRoute(),
-        // Profile(),
+        ProfileRoute(),
       ],
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
@@ -36,21 +36,16 @@ class _MobileBottomState extends State<MobileBottom> {
           bottomNavigationBar: SizedBox(
             height: 66,
             child: Theme(
-              data: ThemeData(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent),
+              data: ThemeData(splashColor: Colors.transparent, highlightColor: Colors.transparent),
               child: BottomNavItem(
                 currentIndex: tabsRouter.activeIndex,
                 count: count,
                 onTap: (v) {
-                  if (v == 2) {
-                    context.router.pushNamed('cart');
-                  } else {
-                    setState(() {
-                      tabsRouter.setActiveIndex(v);
-                      currentIndex = v;
-                    });
-                  }
+                  setState(() {
+                    tabsRouter.setActiveIndex(v);
+                    currentIndex = v;
+                  });
+
                   FocusManager.instance.primaryFocus?.unfocus();
                 },
               ),

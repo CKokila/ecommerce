@@ -6,6 +6,7 @@ import 'package:ecommerce/ui/widget/cache_image.dart';
 import 'package:ecommerce/ui/widget/common.dart';
 import 'package:ecommerce/utils/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../const/color.dart';
@@ -53,6 +54,10 @@ class _ProductDetailState extends State<ProductDetail> {
           child: Scaffold(
             appBar: AppBar(
               backgroundColor: kContainerColor,
+              systemOverlayStyle: SystemUiOverlayStyle(
+                systemNavigationBarColor: Colors.white, // Navigation bar
+                statusBarColor: kContainerColor, // Status bar
+              ),
               title: Text(product.title ?? ''),
               actions: [
                 Padding(
@@ -70,6 +75,7 @@ class _ProductDetailState extends State<ProductDetail> {
             ),
             body: Stack(
               children: [
+                if(product.id != null)...[
                 SingleChildScrollView(
                   child: Column(
                     children: [
@@ -77,7 +83,8 @@ class _ProductDetailState extends State<ProductDetail> {
                         color: kContainerColor,
                         width: width,
                         height: height * 0.35,
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16),
                         child: cacheImage(product.image),
                       ),
                       Padding(
@@ -143,7 +150,9 @@ class _ProductDetailState extends State<ProductDetail> {
                         productId: product.id.toString(),
                         quantity: product.cartQty));
                   },
-                )
+                )]else if(state is ProductLoading)...[
+                  circularProgress(true, context)
+                ]
               ],
             ),
           ),

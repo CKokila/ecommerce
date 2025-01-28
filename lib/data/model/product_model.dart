@@ -8,18 +8,14 @@ class ProductModel {
   Rating? rating;
   num cartQty = 0;
 
+  bool isFav = false;
+
   bool get isInCart => cartQty > 0;
 
   num get totalPrice => (price ?? 0) * (cartQty != 0 ? cartQty : 1);
 
   ProductModel(
-      {this.id,
-      this.title,
-      this.price,
-      this.description,
-      this.category,
-      this.image,
-      this.rating});
+      {this.id, this.title, this.price, this.description, this.category, this.image, this.rating});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -28,8 +24,7 @@ class ProductModel {
     description = json['description'];
     category = json['category'];
     image = json['image'];
-    rating =
-        json['rating'] != null ? new Rating.fromJson(json['rating']) : null;
+    rating = json['rating'] != null ? new Rating.fromJson(json['rating']) : null;
   }
 
   Map<String, dynamic> toJson() {

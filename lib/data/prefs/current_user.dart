@@ -47,5 +47,8 @@ class CurrentUser extends Prefs {
     return getToken.isNotEmpty;
   }
 
-  logout() {}
+  logout() {
+    setCustomerId("");
+    setToken("");
+  }
 }

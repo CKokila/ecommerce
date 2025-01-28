@@ -26,12 +26,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp.router(
       title: 'Ecommerce',
       routerConfig: appRouter.config(),
       themeMode: ThemeMode.light,
       theme: MyTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -7,14 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../data/model/product_model.dart';
+import '../../routing/app_router.dart';
 import '../widget/common.dart';
 
 @RoutePage(name: "ProductListingRoute")
 class ProductListing extends StatefulWidget {
   final String category;
 
-  const ProductListing(
-      {super.key, @PathParam('category') required this.category});
+  const ProductListing({super.key, @PathParam('category') required this.category});
 
   @override
   State<ProductListing> createState() => _ProductListingState();
@@ -36,7 +36,7 @@ class _ProductListingState extends State<ProductListing> {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.white,
-        systemNavigationBarIconBrightness: Brightness.light,
+        systemNavigationBarIconBrightness: Brightness.dark,
       ),
     );
     return BlocListener<ProductListingBloc, ProductListingState>(
@@ -51,6 +51,10 @@ class _ProductListingState extends State<ProductListing> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
+              systemOverlayStyle: SystemUiOverlayStyle(
+                systemNavigationBarColor: Colors.white, // Navigation bar
+                statusBarColor: Colors.white, // Status bar
+              ),
               automaticallyImplyLeading: true,
               title: Text(widget.category),
               actions: [
@@ -58,8 +62,7 @@ class _ProductListingState extends State<ProductListing> {
                     onPressed: () {
                       isAscending = !isAscending;
                       productListingBloc.add(FetchProduct(
-                          category: widget.category,
-                          sort: isAscending ? "asc" : "desc"));
+                          category: widget.category, sort: isAscending ? "asc" : "desc"));
                     },
                     icon: Icon(Icons.sort))
               ],
@@ -72,19 +75,23 @@ class _ProductListingState extends State<ProductListing> {
                     child: StaggeredGrid.count(
                       crossAxisCount: 2,
                       children: [
-                        for (var i in productList) ...[ProductItem(product: i)]
+                        for (var i in productList) ...[
+                          InkWell(
+                            onTap: () {
+                              context.router.push(ProductDetailRoute(id: i.id.toString()));
+                            },
+                            child: ProductItem(product: i),
+                          )
+                        ]
                       ],
                     ),
                   ),
                 ),
                 if (state is! ProductListingLoading && productList.isEmpty) ...[
                   productEmpty(
-                      context: context,
-                      message: "No products available in ${widget.category}!")
+                      context: context, message: "No products available in ${widget.category}!")
                 ],
-                if (state is ProductListingLoading) ...[
-                  circularProgress(true, context)
-                ],
+                if (state is ProductListingLoading) ...[circularProgress(true, context)],
               ],
             ),
           );

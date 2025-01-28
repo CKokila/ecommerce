@@ -1,4 +1,5 @@
 import 'package:ecommerce/ui/widget/common.dart';
+import 'package:ecommerce/utils/dimens.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/model/cart_model.dart';
@@ -148,6 +149,11 @@ class PriceBreakup extends StatelessWidget {
             child: SizedBox(
               width: width,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: borderRadiusAll_30
+                  )
+                ),
                   onPressed: () {}, child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12.0),
                     child: Text("Proceed to Checkout"),

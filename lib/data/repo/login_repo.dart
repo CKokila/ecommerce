@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../../utils/log.dart';
 import '../api/api_response.dart';
@@ -15,10 +15,15 @@ class LoginRepo {
 
   Future<bool> login({var data}) async {
     try {
-      ApiResponse response = await _client.post("auth/login", data);
+      ApiResponse response = await _client.post("auth/login", data: data);
       if (response.status == true) {
         var data = response.data;
-        _currentUser.setToken(data['token']);
+        String token = data['token'];
+        Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+        int subId = decodedToken['sub'];
+        Log.d("Customer $subId");
+        _currentUser.setToken(token);
+        _currentUser.setCustomerId(subId.toString());
         return true;
       } else {
         Log.d('Login error ${response.message.toString()}');

@@ -6,15 +6,20 @@ class ProductModel {
   String? category;
   String? image;
   Rating? rating;
+  num cartQty = 0;
+
+  bool get isInCart => cartQty > 0;
+
+  num get totalPrice => (price ?? 0) * (cartQty != 0 ? cartQty : 1);
 
   ProductModel(
       {this.id,
-        this.title,
-        this.price,
-        this.description,
-        this.category,
-        this.image,
-        this.rating});
+      this.title,
+      this.price,
+      this.description,
+      this.category,
+      this.image,
+      this.rating});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -24,7 +29,7 @@ class ProductModel {
     category = json['category'];
     image = json['image'];
     rating =
-    json['rating'] != null ? new Rating.fromJson(json['rating']) : null;
+        json['rating'] != null ? new Rating.fromJson(json['rating']) : null;
   }
 
   Map<String, dynamic> toJson() {

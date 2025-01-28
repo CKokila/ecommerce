@@ -89,7 +89,7 @@ class DioClient {
     }
   }
 
-  Future<ApiResponse> post(String url, dynamic data) async {
+  Future<ApiResponse> post(String url, {dynamic data}) async {
     _dio.options.headers = _getHeaders();
     try {
       _log("--> POST DATA $data");
@@ -168,6 +168,44 @@ class DioClient {
   }
 
   Future<ApiResponse> put(String url, {dynamic data}) async {
+    _dio.options.headers = _getHeaders();
+    try {
+      _log(data);
+      _log("--> PUT $url");
+      Response rawResponse = await _dio.put(_baseUrl + url, data: data);
+      _log(
+          "<-- ${rawResponse.requestOptions.method} ${rawResponse.statusCode} ${rawResponse.requestOptions.path}");
+      _log(rawResponse.data);
+      if (rawResponse.statusCode == 200) {
+        var data = rawResponse.data;
+        if (data != null && data != '') {
+          return ApiResponse(true, data, "Success");
+        } else {
+          return ApiResponse(true, {}, "Success");
+        }
+      } else {
+        var msg = 'Something went wrong';
+        Log.d("Message $msg");
+        return ApiResponse(false, {}, msg);
+      }
+    } on DioException catch (e) {
+      try {
+        final errorMessage = DioExceptions.fromDioError(e).toString();
+        if (e.response?.statusCode == 401) {
+          Log.d("Logout calling in POST");
+          _kickOut();
+          return ApiResponse(false, {}, tokenMsg);
+        }
+        _log(
+            "<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
+        _log("$errorMessage${e.error}");
+        return ApiResponse(false, {}, errorMessage);
+      } catch (e) {
+        return ApiResponse(false, {}, e.toString());
+      }
+    }
+  }
+  Future<ApiResponse> patch(String url, {dynamic data}) async {
     _dio.options.headers = _getHeaders();
     try {
       _log(data);

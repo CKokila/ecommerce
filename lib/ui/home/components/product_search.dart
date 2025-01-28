@@ -126,7 +126,7 @@ class _ProductSearchState extends State<ProductSearch> {
                         ),
                       ),
                       textWithCurrency(
-                          text: (product.price?.toStringAsFixed(2) ?? '0'),
+                          text: (product.price),
                           style: textTheme.titleSmall!
                               .apply(color: Colors.black, fontWeightDelta: 12))
                     ],

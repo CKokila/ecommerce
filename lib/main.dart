@@ -3,7 +3,11 @@ import 'package:ecommerce/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'data/prefs/current_user.dart';
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  CurrentUser.getInstance();
   runApp(MyApp());
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(

@@ -34,7 +34,7 @@ class BottomNavItem extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 4.0),
             child: SvgPicture.asset(
               currentIndex == 0 ? SvgPictures.homeFilled : SvgPictures.home,
-              color:kPrimaryLight,
+              color:color(context, currentIndex, 0),
             ),
           ),
           label: "Home",
@@ -58,7 +58,7 @@ class BottomNavItem extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 8.0, right: 8, top: 3),
                   child: SvgPicture.asset(
                     SvgPictures.bottomCart,
-                    color: color(context, currentIndex, 2),
+                    color: color(context, currentIndex, 1),
                   ),
                 ),
                 if (count != 0) ...[
@@ -94,8 +94,8 @@ class BottomNavItem extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Padding(
             padding: const EdgeInsets.only(bottom: 4.0),
-            child: SvgPicture.asset(currentIndex == 3 ? SvgPictures.profileFilled : SvgPictures.profile,
-                color: color(context, currentIndex, 3)),
+            child: SvgPicture.asset(currentIndex == 2 ? SvgPictures.profileFilled : SvgPictures.profile,
+                color: color(context, currentIndex, 2)),
           ),
           label: "Profile",
         ),
@@ -105,6 +105,5 @@ class BottomNavItem extends StatelessWidget {
 }
 
 Color color(BuildContext context, int currentIndex, int tabIndex) {
-  ThemeData theme = Theme.of(context);
   return currentIndex == tabIndex ? kPrimaryLight : const Color(0xff9A9A9A);
 }

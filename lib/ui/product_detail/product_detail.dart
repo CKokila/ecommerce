@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ecommerce/data/model/product_model.dart';
 import 'package:ecommerce/ui/product_detail/bloc/product_bloc.dart';
+import 'package:ecommerce/ui/product_detail/component/price_card.dart';
 import 'package:ecommerce/ui/widget/cache_image.dart';
 import 'package:ecommerce/ui/widget/common.dart';
 import 'package:ecommerce/utils/extension.dart';
@@ -44,6 +45,9 @@ class _ProductDetailState extends State<ProductDetail> {
           listener: (context, state) {
             if (state is ProductLoaded) {
               product = state.product;
+            }
+            if (state is CartUpdated) {
+              productBloc.add(FetchProduct(id: widget.id));
             }
           },
           child: Scaffold(
@@ -125,58 +129,20 @@ class _ProductDetailState extends State<ProductDetail> {
                     ],
                   ),
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    width: width,
-                    height: 80,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: borderRadiusAll_10,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.9),
-                            spreadRadius: 0,
-                            blurRadius: 4,
-                            offset: const Offset(0, 2),
-                          )
-                        ]),
-                    padding: EdgeInsets.all(16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Total Price",
-                              style: textTheme.titleMedium?.apply(
-                                  color: Colors.grey, fontWeightDelta: 12),
-                            ),
-                            textWithCurrency(
-                              text: product.price.toString(),
-                              style: textTheme.titleMedium
-                                  ?.apply(fontWeightDelta: 12),
-                            )
-                          ],
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 18.0, vertical: 8),
-                            child: Row(
-                              children: [
-                                Icon(Icons.shopping_cart, color: Colors.white),
-                                SizedBox(width: 10),
-                                Text("Add to cart"),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                PriceCard(
+                  product: product,
+                  onRemove: () {
+                    product.cartQty--;
+                    productBloc.add(AddToCart(
+                        productId: product.id.toString(),
+                        quantity: product.cartQty));
+                  },
+                  onAdd: () {
+                    product.cartQty++;
+                    productBloc.add(AddToCart(
+                        productId: product.id.toString(),
+                        quantity: product.cartQty));
+                  },
                 )
               ],
             ),

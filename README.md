@@ -29,7 +29,7 @@ A **Flutter E-Commerce App** showcasing clean architecture, seamless navigation,
     - Price and description
     - Add to cart option
 
-### 5. Cart Page *(In Progress)*
+### 5. Cart Page 
 - Products added to the cart will be listed here.
 - Total cost calculation for user convenience.
 

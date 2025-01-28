@@ -18,8 +18,8 @@ Widget circularProgress(bool isLoading, BuildContext context) {
   );
 }
 
-Widget textWithCurrency({required String text, required TextStyle? style}) {
-  return Text(LocaleUtils.currencyFormat(text), style: style);
+Widget textWithCurrency({required num? text, required TextStyle? style}) {
+  return Text(LocaleUtils.currencyFormat(text.toString()), style: style);
 }
 
 String moneyCode = '\$';

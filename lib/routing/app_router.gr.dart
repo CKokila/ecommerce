@@ -9,6 +9,21 @@
 // coverage:ignore-file
 
 part of 'app_router.dart';
+/// generated route for
+/// [CartPage]
+class CartRoute extends PageRouteInfo<void> {
+  const CartRoute({List<PageRouteInfo>? children})
+    : super(CartRoute.name, initialChildren: children);
+
+  static const String name = 'CartRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CartPage();
+    },
+  );
+}
 
 /// generated route for
 /// [HomePage]
@@ -141,4 +156,20 @@ class ProductListingRouteArgs {
   String toString() {
     return 'ProductListingRouteArgs{key: $key, category: $category}';
   }
+}
+
+/// generated route for
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+    : super(ProfileRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfilePage();
+    },
+  );
 }

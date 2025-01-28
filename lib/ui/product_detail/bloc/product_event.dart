@@ -8,3 +8,20 @@ class FetchProduct extends ProductEvent {
 
   FetchProduct({required this.id});
 }
+
+class AddToCart extends ProductEvent {
+  final String productId;
+  final num quantity;
+
+  AddToCart({required this.productId, required this.quantity});
+}
+
+final class CartUpdated extends ProductState {}
+
+
+class UpdateCartQty extends ProductEvent {
+  final String productId;
+  final num quantity;
+
+  UpdateCartQty({required this.productId, required this.quantity});
+}

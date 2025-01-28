@@ -84,7 +84,7 @@ class HomeProductItem extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   textWithCurrency(
-                      text: product.price.toString(),
+                      text: product.price,
                       style: textTheme.bodyMedium?.apply(fontWeightDelta: 12))
                 ],
               ),

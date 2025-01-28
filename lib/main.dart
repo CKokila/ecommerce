@@ -1,3 +1,4 @@
+import 'package:ecommerce/const/color.dart';
 import 'package:ecommerce/routing/app_router.dart';
 import 'package:ecommerce/utils/theme.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ void main() {
   runApp(MyApp());
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
+      statusBarColor: kPrimaryLight,
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: Colors.white,
       systemNavigationBarIconBrightness: Brightness.dark,

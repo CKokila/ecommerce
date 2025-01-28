@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                                             Text(
                                               "Please login to your account",
                                               style: textTheme.bodySmall
-                                                  ?.apply(fontWeightDelta: 12, color: kGrey),
+                                                  ?.apply(fontWeightDelta: 12, color: Colors.black),
                                             ),
                                           ],
                                         ),
@@ -126,13 +126,13 @@ class _LoginPageState extends State<LoginPage> {
                                       const SizedBox(height: 30),
                                       LoginTextField(
                                         textController: username,
-                                        hintText: "Enter your phone number",
+                                        hintText: "Enter username number",
                                         length: 15,
                                         inputType: TextInputType.number,
                                         inputFormat: [FilteringTextInputFormatter.digitsOnly],
                                         validator: (v) {
                                           if (v?.isEmpty ?? false) {
-                                            return "Phone number is required";
+                                            return "Username is required";
                                           } else {
                                             return null;
                                           }

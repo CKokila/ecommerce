@@ -4,40 +4,18 @@ A **Flutter E-Commerce App** showcasing clean architecture, seamless navigation,
 
 ---
 
-## 🚀 Features
+## Features
 
-### 1. Authentication
-- Simple login page for user authentication.
+- **Login Page**: User authentication with login functionality.
+- **Home Page**: Displays a banner, product categories, and top-selling products.
+- **Product Search**: Users can search for products easily.
+- **Product Listing Page**: Products can be sorted and filtered based on various criteria.
+- **Cart Page**: Users can add products to the cart and manage them.
+- **Profile Page**: Users can view and manage their account details.
 
-### 2. Home Page
-- Rotating **promotional banners**.
-- **Category browsing** with 4 categories:
-    - **Electronics**
-    - **Jewelery**
-    - **Men's Clothing**
-    - **Women's Clothing**
-- Highlighted **top products** section.
+## Architecture
 
-### 3. Product Listing
-- Displays products under the selected category.
-- **Sorting options** for better user experience (e.g., sort by price, name, rating).
+- **MVVM Pattern**: The app follows the Model-View-ViewModel pattern for clear separation of concerns.
+- **BLoC State Management**: The app uses BLoC for state management, ensuring a scalable and maintainable codebase.
+- **AutoRoute**: AutoRoute is used for handling routing, which simplifies navigation and reduces boilerplate.
 
-### 4. Product Detail
-- Detailed product information:
-    - Product name
-    - Image gallery
-    - Price and description
-    - Add to cart option
-
-### 5. Cart Page 
-- Products added to the cart will be listed here.
-- Total cost calculation for user convenience.
-
-### 6. State Management
-- Reactive **BLoC pattern** for predictable and testable state management.
-
-### 7. Navigation
-- **AutoRoute** package for declarative routing and scalable navigation.
-
-### 8. API Integration
-- Data dynamically fetched from a **free online API**.

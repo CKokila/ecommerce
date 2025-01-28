@@ -28,5 +28,5 @@ Preview                    |   Home Screen             |  Top Selling    |  Sear
 
 Product Listing                    |   Product Detail Screen             |  Cart Screen    |  Login Screen
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/CKokila/ecommerce/blob/master/screenshots/product_listing.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/product_detail.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/cart.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/profile.jpg?raw=true)
+![](https://github.com/CKokila/ecommerce/blob/master/screenshots/product_listing.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/product_detail.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/cart.jpg?raw=true)|![](https://github.com/CKokila/ecommerce/blob/master/screenshots/login.jpg?raw=true)
 

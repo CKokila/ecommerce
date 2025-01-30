@@ -34,26 +34,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
-        listeners: [
-          BlocProvider(create: (context) => LoginBloc()),
-          BlocProvider(create: (context) => HomeBloc()),
-          BlocProvider(create: (context) => ProductListingBloc()),
-          BlocProvider(create: (context) => ProductBloc()),
-          BlocProvider(create: (context) => CartBloc()),
-        ],
-        child: MaterialApp.router(
-          title: 'Ecommerce',
-          routerConfig: appRouter.config(),
-          themeMode: ThemeMode.light,
-          theme: MyTheme.lightTheme,
-          debugShowCheckedModeBanner: false,
-        ));
-    return MaterialApp.router(
-      title: 'Ecommerce',
-      routerConfig: appRouter.config(),
-      themeMode: ThemeMode.light,
-      theme: MyTheme.lightTheme,
-      debugShowCheckedModeBanner: false,
+      listeners: [
+        BlocProvider(create: (context) => LoginBloc()),
+        BlocProvider(create: (context) => HomeBloc()),
+        BlocProvider(create: (context) => ProductListingBloc()),
+        BlocProvider(create: (context) => ProductBloc()),
+        BlocProvider(create: (context) => CartBloc()),
+      ],
+      child: MaterialApp.router(
+        title: 'Ecommerce',
+        routerConfig: appRouter.config(),
+        themeMode: ThemeMode.light,
+        theme: MyTheme.lightTheme,
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

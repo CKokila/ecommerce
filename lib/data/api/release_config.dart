@@ -1,4 +1,6 @@
-enum ReleaseMode { debug, demo, test }
+import 'package:ecommerce/const/environment.dart';
+
+enum ReleaseMode { debug, test, prod }
 
 class ReleaseConfig {
   static ReleaseMode currentMode = ReleaseMode.debug;
@@ -6,12 +8,11 @@ class ReleaseConfig {
   static String get baseUrl {
     switch (currentMode) {
       case ReleaseMode.debug:
-        return "https://fakestoreapi.com/";
+        return Environment.instance.devBaseUrl;
       case ReleaseMode.test:
-        return "https://fakestoreapi.com/";
-      case ReleaseMode.demo:
-        return "https://fakestoreapi.com/";
+        return Environment.instance.testBaseUrl;
+      case ReleaseMode.prod:
+        return Environment.instance.prodBaseUrl;
     }
   }
-
 }

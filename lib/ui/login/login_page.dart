@@ -42,12 +42,6 @@ class _LoginPageState extends State<LoginPage> {
     loginBloc.add(LoginRequestEvent(data));
   }
 
-  @override
-  void initState() {
-    // username.text = "mor_2314";
-    // password.text = "83r5^_";
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,10 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                                       const SizedBox(height: 30),
                                       LoginTextField(
                                         textController: username,
-                                        hintText: "Enter username number",
+                                        hintText: "Enter username",
                                         length: 15,
-                                        inputType: TextInputType.number,
-                                        inputFormat: [FilteringTextInputFormatter.digitsOnly],
                                         validator: (v) {
                                           if (v?.isEmpty ?? false) {
                                             return "Username is required";

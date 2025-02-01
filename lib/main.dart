@@ -1,4 +1,5 @@
 import 'package:ecommerce/const/color.dart';
+import 'package:ecommerce/const/environment.dart';
 import 'package:ecommerce/routing/app_router.dart';
 import 'package:ecommerce/ui/cart/bloc/cart_bloc.dart';
 import 'package:ecommerce/ui/home/bloc/home_bloc.dart';
@@ -9,12 +10,14 @@ import 'package:ecommerce/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'data/prefs/current_user.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  CurrentUser.getInstance();
+  await CurrentUser.getInstance();
+  await Environment.loadEnv();
   runApp(MyApp());
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(

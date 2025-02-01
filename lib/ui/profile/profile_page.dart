@@ -59,7 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Row(
                           children: [
                             cacheProfileImage(
-                                "https://avatars.githubusercontent.com/u/83339830?v=4",
+                                "https://c.pxhere.com/photos/e8/60/smile_profile_face_male_portrait_young_person_glasses-451653.jpg",
                                 width: 80,
                                 height: 80),
                             SizedBox(width: 20),

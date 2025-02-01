@@ -7,11 +7,11 @@ import '../api/api_server.dart';
 import '../prefs/current_user.dart';
 
 class LoginRepo {
-  final DioClient _client;
+  final ApiServer _client;
 
   final CurrentUser _currentUser = CurrentUser();
 
-  LoginRepo() : _client = DioClient();
+  LoginRepo() : _client = ApiServer();
 
   Future<bool> login({var data}) async {
     try {

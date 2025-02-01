@@ -5,7 +5,7 @@ import '../../utils/log.dart';
 import '../api/api_response.dart';
 
 class ProductRepo {
-  final DioClient _client = DioClient();
+  final ApiServer _client = ApiServer();
 
   Future<List<ProductModel>> getProducts(String category,
       {String? sort}) async {

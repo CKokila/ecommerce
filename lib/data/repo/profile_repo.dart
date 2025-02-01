@@ -5,7 +5,7 @@ import '../model/profile_model.dart';
 import '../api/api_response.dart';
 
 class ProfileRepo {
-  final DioClient _client = DioClient();
+  final ApiServer _client = ApiServer();
   final CurrentUser _user = CurrentUser();
   Future<ProfileModel> fetchProfile() async {
     try {

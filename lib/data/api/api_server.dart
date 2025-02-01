@@ -6,21 +6,27 @@ import '../prefs/current_user.dart';
 import 'api_response.dart';
 import 'exception.dart';
 
-class DioClient {
+class ApiServer {
+  static final ApiServer _instance = ApiServer._internal();
+
+  factory ApiServer() {
+    return _instance;
+  }
+
+  ApiServer._internal() {
+    // Initialize your Dio client here, or handle any setup required.
+  }
+
   final Dio _dio = Dio();
   final _baseUrl = ReleaseConfig.baseUrl;
   final CurrentUser _currentUser = CurrentUser();
-  final bool _enableLog = kDebugMode;
   String tokenMsg = "Token Refreshing";
-
-  DioClient();
 
   Future<ApiResponse> login(String url, {required var userCredential}) async {
     try {
       _log("--> POST $url");
       _log("--> POST Data $userCredential");
-      Response rawResponse =
-          await _dio.post(_baseUrl + url, data: userCredential);
+      Response rawResponse = await _dio.post(_baseUrl + url, data: userCredential);
       var response = rawResponse.data;
       _log(
           "<-- ${rawResponse.requestOptions.method} ${rawResponse.statusCode} ${rawResponse.requestOptions.path}");
@@ -39,8 +45,7 @@ class DioClient {
       }
     } on DioException catch (e) {
       try {
-        _log(
-            "<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
+        _log("<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
         final errorMessage = DioExceptions.fromDioError(e).toString();
         _log("$errorMessage${e.error}");
         return ApiResponse(false, {}, errorMessage);
@@ -50,11 +55,11 @@ class DioClient {
     }
   }
 
-  Future<ApiResponse> get(String url,{Map<String, dynamic>? queryParameters}) async {
+  Future<ApiResponse> get(String url, {Map<String, dynamic>? queryParameters}) async {
     _dio.options.headers = _getHeaders();
     try {
       _log("--> GET $url");
-      Response rawResponse = await _dio.get(_baseUrl + url,queryParameters: queryParameters);
+      Response rawResponse = await _dio.get(_baseUrl + url, queryParameters: queryParameters);
       var response = rawResponse.data;
       _log(
           "<-- ${rawResponse.requestOptions.method} ${rawResponse.statusCode} ${rawResponse.requestOptions.path}");
@@ -79,8 +84,7 @@ class DioClient {
           _kickOut();
           return ApiResponse(false, {}, tokenMsg);
         }
-        _log(
-            "<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
+        _log("<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
         _log("$errorMessage${e.error}");
         return ApiResponse(false, {}, errorMessage);
       } catch (e) {
@@ -118,8 +122,7 @@ class DioClient {
           _kickOut();
           return ApiResponse(false, {}, tokenMsg);
         }
-        _log(
-            "<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
+        _log("<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
         _log("$errorMessage${e.error}");
         return ApiResponse(false, {}, errorMessage);
       } catch (e) {
@@ -157,8 +160,7 @@ class DioClient {
           _kickOut();
           return ApiResponse(false, {}, tokenMsg);
         }
-        _log(
-            "<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
+        _log("<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
         _log("$errorMessage${e.error}");
         return ApiResponse(false, {}, errorMessage);
       } catch (e) {
@@ -196,8 +198,7 @@ class DioClient {
           _kickOut();
           return ApiResponse(false, {}, tokenMsg);
         }
-        _log(
-            "<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
+        _log("<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
         _log("$errorMessage${e.error}");
         return ApiResponse(false, {}, errorMessage);
       } catch (e) {
@@ -205,6 +206,7 @@ class DioClient {
       }
     }
   }
+
   Future<ApiResponse> patch(String url, {dynamic data}) async {
     _dio.options.headers = _getHeaders();
     try {
@@ -234,8 +236,7 @@ class DioClient {
           _kickOut();
           return ApiResponse(false, {}, tokenMsg);
         }
-        _log(
-            "<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
+        _log("<-- ${e.requestOptions.method} ${e.response?.statusCode} ${e.requestOptions.path}");
         _log("$errorMessage${e.error}");
         return ApiResponse(false, {}, errorMessage);
       } catch (e) {
@@ -255,7 +256,7 @@ class DioClient {
   }
 
   _log(dynamic data) {
-    if (_enableLog) {
+    if (kDebugMode) {
       if (data is Map) {
         Log.d("API_LOG: ${data.toString()}");
       } else {

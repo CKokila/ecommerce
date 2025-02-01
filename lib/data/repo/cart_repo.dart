@@ -7,7 +7,7 @@ import '../../utils/log.dart';
 import '../api/api_response.dart';
 
 class CartRepo {
-  final DioClient _client = DioClient();
+  final ApiServer _client = ApiServer();
   final CurrentUser _user = CurrentUser();
 
   // Get all carts

@@ -8,8 +8,6 @@ import 'dimens.dart';
 class MyTheme {
   static ThemeData get lightTheme => ThemeData(
       appBarTheme: const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.light),
-
-      ///visual density added to standard cause button padding reducing on web
       visualDensity: VisualDensity.standard,
       iconTheme: const IconThemeData(color: Colors.black),
       splashColor: Colors.white,
@@ -24,15 +22,15 @@ class MyTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: const MaterialStatePropertyAll(kPrimaryLight),
-            foregroundColor: const MaterialStatePropertyAll(Colors.white),
-        shape: MaterialStateProperty.all(
+            backgroundColor: const WidgetStatePropertyAll(kPrimaryLight),
+            foregroundColor: const WidgetStatePropertyAll(Colors.white),
+        shape: WidgetStateProperty.all(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
       )),
       textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))))),
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))))),
       textSelectionTheme:
           const TextSelectionThemeData(cursorColor: kPrimaryLight, selectionHandleColor: Colors.transparent),
       brightness: Brightness.light,

@@ -36,7 +36,7 @@ class MyTheme {
       brightness: Brightness.light,
       scaffoldBackgroundColor: const Color(0xffffffff),
       colorScheme: const ColorScheme.light(primary: kPrimaryLight, secondary: kSecondaryLight),
-      scrollbarTheme: const ScrollbarThemeData(radius: Radius.circular(5), thumbVisibility: MaterialStatePropertyAll(true)),
+      scrollbarTheme: const ScrollbarThemeData(radius: Radius.circular(5), thumbVisibility: WidgetStatePropertyAll(true)),
       textTheme: GoogleFonts.sourceSans3TextTheme(const TextTheme(
         bodyMedium: TextStyle(color: Color(0xff292D32)),
         titleMedium: TextStyle(color: Color(0xff292D32)),
